@@ -1,0 +1,109 @@
+/* Navbar.css */
+body{
+  font-family: sans-serif;
+}
+.nav-head{
+  height: 60px;
+}
+.navbar {
+  background: linear-gradient(to top right, #2ca2fc  0%, #6c4079 100%);
+  color: black;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    /* position: sticky; */
+    z-index: 1;
+    width: 100%;
+    /* height: 80px; */
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-brand p {
+  font-weight: bold;
+  font-size: large;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.navbar-logo {
+  height: 40px; /* Adjust the height as needed */
+  margin-right: 10px;
+  border-radius: 25px;
+}
+
+.navbar-toggler {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: none; /* Hide the toggler by default */
+}
+
+.navbar-toggler:focus {
+  outline: none; /* Remove focus outline */
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+}
+
+.nav-item {
+  margin: 0 10px;
+  /* font-weight: 600;   */
+  text-transform: uppercase;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black; /* Set text color */
+}
+/* span {
+  width: 22px;
+  height: 22;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -22px;
+  margin-left: 8px;
+  border-radius: 11px;
+  background-color: red;
+
+} */
+
+.nav-link:hover {
+  color: #7788af; /* Change text color on hover */
+  /* font-weight: 600; */
+  /* transition:  1s ease; */
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+  .navbar-nav {
+    flex-direction: column; /* Display navbar items vertically on mobile */
+    display: none; /* Hide the navbar items by default on mobile */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px 0;
+    /* z-index: 1000; Ensure the navbar is above other content/ */
+  }
+
+  .navbar-nav.open {
+    display: flex; /* Show the navbar items when open on mobile */
+  }
+
+  .navbar-toggler {
+    display: block; 
+  }
+
+  .nav-item {
+    margin: 10px 0;
+  }
+}

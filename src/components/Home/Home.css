@@ -1,0 +1,12 @@
+.woman-head h1{
+    font-size: 36px;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    color: aliceblue;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .body-home{
+    background: linear-gradient(to top right, #2ca2fc  0%, #6c4079 100%);
+
+  }
