@@ -1,0 +1,67 @@
+/* ContactUs.css */
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .contact-box {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1.1);
+    padding: 40px;
+    width: 600px;
+    max-width: 90%;
+  }
+  
+  .contact-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .contact-input, .contact-textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  .contact-input:focus, .contact-textarea:focus {
+    border-bottom-color: #007bff;
+  }
+  
+  .contact-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    transition: transform 0.3s, font-size 0.3s, padding-top 0.3s;
+  }
+  
+  .contact-input:focus + .contact-label, .contact-textarea:focus + .contact-label, .contact-input:not(:placeholder-shown) + .contact-label, .contact-textarea:not(:placeholder-shown) + .contact-label {
+    transform: translateY(-20px);
+    font-size: 14px;
+    padding-top: 5px;
+  }
+  
+  .contact-button {
+    background-color: #007bff;
+    color: white;
+
+  }
+  
+   .contact-button:hover {
+    background-color: #0056b3;
+    transition: 1s ease;
+  }
+   

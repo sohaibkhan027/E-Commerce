@@ -1,12 +1,23 @@
-.woman-head h1{
-    font-size: 36px;
-    text-align: center;
-    font-weight: bold;
-    margin: 0 0 10px 0;
-    color: aliceblue;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  .body-home{
-    background: linear-gradient(to top right, #2ca2fc  0%, #6c4079 100%);
+.woman-head{
+  background-color: #f6f6f8;
+}
+.woman-head h1 {
+  font-size: 36px;
+  text-align: center;
+  font-weight: bold;
+  margin: 10px 0 10px 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .woman-head h1 {
+    font-size: 28px; /* Decrease font size for smaller screens */
+    margin-bottom: 5px; /* Decrease bottom margin for smaller screens */
   }
+}
+
+/* Hide carousel status and control arrows */
+.carousel-status, .control-arrow {
+  display: none;
+}

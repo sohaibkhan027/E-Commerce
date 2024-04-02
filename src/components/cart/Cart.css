@@ -10,17 +10,15 @@
     color: #727E8C;
 } */
 
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+/* .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     color: #475F7B;
-}
+} */
 
 a, a:hover, a:focus {
     text-decoration: none;
     transition: 0.5s;
     outline: none;
 }
-
-/* ------------ */
 
 .card {
     box-shadow: 0px 4px 8px rgb(0 0 0 / 16%);
@@ -29,6 +27,8 @@ a, a:hover, a:focus {
     margin-bottom: 30px;
     background-color: #fff;
     border: none;
+    width: 80%;
+    margin: 0 auto;
 }
 .card-body {
     padding: 30px;
@@ -40,8 +40,18 @@ a, a:hover, a:focus {
 }
 .btn-danger {
     border-color: #FF2829!important;
-    background-color: #FF5B5C!important;
+    background-color: #ffa45b!important;
     color: #FFF;
+}
+.btn-em {
+    display: inline-block;
+    line-height: 46px;
+    padding: 0px 11px;
+    transition: all .4s ease;
+    cursor: pointer;
+    font-size: 13px;
+    color: #fff;
+    font-family: poppins, arial, helvetica neue, sans-serif;
 }
 .form-submit{
   padding: 13px 30px;
@@ -155,4 +165,8 @@ th{
 }
 .text-right {
   text-align: center;
+}
+.place-order{
+    display: flex;
+    justify-content: end;
 }

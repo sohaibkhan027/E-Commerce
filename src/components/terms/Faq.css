@@ -1,0 +1,56 @@
+
+
+.main-content p{
+    padding: 10px;
+}
+
+
+/* Faq.css */
+
+/* Styles for FAQ container */
+.faq-container {
+    padding: 20px;
+  }
+  
+  /* Styles for each FAQ post */
+  .faq-post {
+    margin-bottom: 20px;
+  }
+  
+  /* Styles for FAQ question */
+  .faq-post h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for FAQ answer */
+  .faq-post p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* Media queries for responsiveness */
+  @media screen and (max-width: 768px) {
+    /* Adjust FAQ question font size for smaller screens */
+    .faq-post h3 {
+      font-size: 18px;
+    }
+    
+    /* Adjust FAQ answer font size for smaller screens */
+    .faq-post p {
+      font-size: 14px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    /* Adjust FAQ question font size for even smaller screens */
+    .faq-post h3 {
+      font-size: 16px;
+    }
+    
+    /* Adjust FAQ answer font size for even smaller screens */
+    .faq-post p {
+      font-size: 12px;
+    }
+  }
+  

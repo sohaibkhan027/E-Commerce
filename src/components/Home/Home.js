@@ -35,7 +35,7 @@ const Home = () => {
         <Link key={product.id} to={`/product/${product.id}`} onClick={() => dispatch(setSeletedProduct(product))}>
           <Card
             hoverable
-            style={{ width: 240 }}
+            style={{ width: 241 }}
             cover={<img alt={product.name} src={product.image} />}
           >
             <Meta title={product.name}  description={  <div>
@@ -50,14 +50,14 @@ const Home = () => {
     </div>
 
     <div className='woman-head'>
-      <h1>New Collection </h1>
+      <h1>New Arrivals </h1>
     </div>
     <div className="product-cards-container">
       {newData.map(product => (
         <Link key={product.id} to={`/product/${product.id}`} onClick={() => dispatch(setSeletedProduct(product))}>
           <Card
             hoverable
-            style={{ width: 240 }}
+            style={{ width: 241 }}
             cover={<img alt={product.name} src={product.image} />}
           >
             <Meta title={product.name}  description={  <div>

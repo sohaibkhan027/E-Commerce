@@ -18,24 +18,22 @@ const cartSlice = createSlice({
 
         },
         removeFromCart(state, action) {
-            const id = action.payload;
-            const index = state.cartItem.findIndex(item => item.id === id);
+            const index = state.cartItem.findIndex(item => item.id === action.payload)
             if (index !== -1) {
-              state.cartItem.splice(index, 1);
+              state.cartItem.splice(index, 1)
             }
           },
           increaseQuantity(state, action) {
-            const id = action.payload;
-            const product = state.cartItem.find((item) => item.id === id);
+            const product = state.cartItem.find((item) => item.id === action.payload)
             if (product) {
-                product.cartQuantity++; // Increment the cartQuantity of the found product
+                product.cartQuantity++
             }
         },
         decreaseQuantity(state, action) {
           const id = action.payload;
           const product = state.cartItem.find((item) => item.id === id);
           if (product && product.cartQuantity > 1) {
-              product.cartQuantity--; // Decrement the cartQuantity of the found product
+              product.cartQuantity--
           }
       },
           emptyCart(state) {

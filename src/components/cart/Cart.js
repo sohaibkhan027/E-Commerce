@@ -3,11 +3,13 @@ import './Cart.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, emptyCart, increaseQuantity, decreaseQuantity } from '../../redux/reducer/CartSlice';
 import { useNavigate } from 'react-router-dom';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 
 const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  const [messageApi, contextHolder] = message.useMessage();
+
   const cartItems = useSelector(state => state.cart.cartItem);
 
   const handleIncreaseQuantity = (product) => {
@@ -34,7 +36,13 @@ const Cart = () => {
       dispatch(emptyCart());
       navigate("/")
     }
-  };
+  }
+
+  function orderPlace(){
+    setTimeout(()=>{
+      navigate("/")
+    },2000)
+  }
 
   return (
     <div className="row justify-content-center m-0">
@@ -44,8 +52,8 @@ const Cart = () => {
           <div className="card">
             <div className="card-header bg-dark p-3">
               <div className="card-header-flex">
-                <h5 className="text-white m-0">Cart Calculation ({cartItems.length})</h5>
-                <button className="btn btn-danger mt-0 btn-sm" onClick={handleEmptyCart}>
+                <h3 className=" m-0">Cart Calculation ({cartItems.length})</h3>
+                <button className="btn-em btn-danger mt-0 btn-sm" onClick={handleEmptyCart}>
                   <i className="fa fa-trash-alt mr-2"></i>
                   <span>Empty Cart</span>
                 </button>
@@ -90,9 +98,22 @@ const Cart = () => {
                   ))}
                 </tbody>
               </table>
-            <Button onClick={()=>{
+              <Button onClick={()=>{
                 navigate("/product")
               }}>Add Items</Button>
+              {contextHolder}
+
+            
+              <div className='place-order'>
+          <Button onClick={()=>{
+            messageApi.open({
+              type: 'success',
+              content: 'Your order place successfully',
+            })
+            orderPlace()
+          }
+  }>Place Order</Button>
+          </div>
           </div>
             </div>
         ) : (

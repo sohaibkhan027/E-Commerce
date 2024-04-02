@@ -3,7 +3,7 @@
 }
 .bg-gra-02 {
 
-    background: linear-gradient(to top right, #2ca2fc  0%, #6c4079 100%);
+    /* background: linear-gradient(to top right, #2ca2fc  0%, #6c4079 100%); */
 }
 .page-wrapper {
     min-height: 100vh;
@@ -23,7 +23,7 @@
 .card-4 {
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 8px 20px 0 rgba(0,0,0,.15);
+    box-shadow: 0 8px 20px 0 rgba(0,0,0,1.1);
 }
 .card-4 .card-body {
     padding: 57px 65px;
@@ -57,8 +57,8 @@
     margin-bottom: 5px;
 }
 .input--style-4 {
-    line-height: 50px;
-    background: #fafafa;
+    line-height: 35px;
+    background: #f6f6f8;
     border-radius: 5px;
     padding: 0 20px;
     font-size: 16px;
@@ -78,24 +78,15 @@ input {
 .p-t-15 {
     padding-top: 15px;
 }
-.btn--blue {
-    background: #4272d7;
-}
-.btn--radius-2 {
-    border-radius: 5px;
-}
 .btn {
-    display: inline-block;
-    line-height: 50px;
-    padding: 0 50px;
-    transition: all .4s ease;
-    cursor: pointer;
-    font-size: 18px;
-    color: #fff;
-    font-family: poppins, arial, helvetica neue, sans-serif;
+    background: #4272d7;
+    color: white;
+    padding: 8px;
+    border-radius: 6px;
 }
-button {
-    outline: none;
-    background: 0 0;
-    border: none;
+.btn:hover{
+    background-color: #3155a2;
+    transition: 1s ease;
 }
+
+
