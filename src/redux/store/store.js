@@ -1,6 +1,5 @@
 // store.js
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from '../store/store'; // Import your root reducer
 import selectedProductSlice from '../reducer/selectedProduct-slice';
 import CartSlice from '../reducer/CartSlice';
 import regSlice  from "../reducer/RegistrationSlice"

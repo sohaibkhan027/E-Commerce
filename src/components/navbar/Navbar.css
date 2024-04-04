@@ -70,18 +70,19 @@ body{
 .navbar-toggler-r{
   display: none;
 }
-/* span {
-  width: 22px;
-  height: 22;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: -22px;
-  margin-left: 8px;
-  border-radius: 11px;
-  background-color: red;
+.cart-items {
 
-} */
+    width: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 11px;
+    background-color: #ff0000b5;
+    position: absolute;
+    right: 20px;
+    top: 14px;
+}
+
 
 .nav-link:hover {
   color: #7788af; /* Change text color on hover */

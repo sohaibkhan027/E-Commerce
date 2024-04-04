@@ -5,9 +5,9 @@ import {
   AppstoreOutlined,
 } from '@ant-design/icons';
 
-import { Button, Menu } from 'antd';
+import {  Menu } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleLeft, faArrowLeft, faBarChart, faCross } from '@fortawesome/free-solid-svg-icons';
+import {  faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 const { SubMenu } = Menu;
 
 

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Home.css'
 import SliderCarousel from './Slider';
 import image1 from '../Assets/banner_mens.png';
 import image2 from '../Assets/banner_kids.png';
 import image3 from '../Assets/banner_women.png';
-import Products from '../services/ProductCards';
+// import Products from '../services/ProductCards';
 import data from '../Assets/data'
 import newData from '../Assets/new_collections'
-import mobData from '../../Assets-mob/mob-data'
+// import mobData from '../../Assets-mob/mob-data'
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import { useDispatch } from 'react-redux';
@@ -17,11 +17,11 @@ const { Meta } = Card;
 
 const Home = () => {
   const dispatch = useDispatch()
-  const [selectedProductId, setSelectedProductId] = useState(null);
+  // const [, setSelectedProductId] = useState(null);
   const images = [image1, image2, image3];
-  const selectProduct = (product) => {
-    setSelectedProductId(product);
-  };
+  // const selectProduct = (product) => {
+  //   setSelectedProductId(product);
+  // };
 
   return (
     <div className='body-home'>

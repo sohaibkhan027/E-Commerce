@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faHamburger, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faBars,  faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css'; // Import CSS file for styling
 import Logo from "../Assets/logo.png"
 import Sidebar from './Sidebar'
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogout } from '../../redux/reducer/RegistrationSlice';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [navBar, setnavBar] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  const isAuthenticated = useSelector(state => state.user.isAuthenticated)
+  const item = useSelector(state => state.cart.cartItem)
+
+  console.log("items",item);
+  console.log("isAuth",isAuthenticated);
+  const user = useSelector(state => state.user.loggedUser)
+
+  console.log("user Detail",user);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -20,6 +32,9 @@ const Navbar = () => {
   };
   const toggleNavbar = () => {
     setnavBar(!navBar);
+  };
+  const handleLogout = () => {
+    dispatch(userLogout())
   };
 
   return (
@@ -43,12 +58,22 @@ const Navbar = () => {
           <li className="nav-item"><Link to="/about" className="nav-link" onClick={closeSidebar}>About</Link></li>
           <li className="nav-item"><Link to="/product" className="nav-link" onClick={closeSidebar}>Products</Link></li>
           <li className="nav-item"><Link to="/contact" className="nav-link" onClick={closeSidebar}>Contact</Link></li>
-          <li className="nav-item"><Link to="/signup" className="nav-link" onClick={closeSidebar}>SignUp</Link></li>
-          <li className="nav-item"><Link to="/login" className="nav-link" onClick={closeSidebar}>Login</Link></li>
-          <li className="nav-item nav-change"><Link to="/cart" className="nav-link " onClick={closeSidebar}><FontAwesomeIcon icon={faShoppingCart} /></Link></li>
+          {isAuthenticated ? (
+            <>
+              <li className="nav-item"><p className="nav-link">{user.firstName}</p></li>
+              <li className="nav-item"><button className="nav-link" onClick={handleLogout}>Logout</button></li>
+            </>
+          ) : (
+            <>
+              <li className="nav-item"><Link to="/signup" className="nav-link" onClick={closeSidebar}>SignUp</Link></li>
+              <li className="nav-item"><Link to="/login" className="nav-link" onClick={closeSidebar}>Login</Link></li>
+            </>
+          )}
+          <li className="nav-item nav-change"><Link to="/cart" className="nav-link " onClick={closeSidebar}><FontAwesomeIcon icon={faShoppingCart} /><span className='cart-items'>{item.length}</span></Link></li>
         </ul>
       </nav>
       <Sidebar isOpen={isOpen} onClose={closeSidebar} />
+      
     </div>
   );
 };

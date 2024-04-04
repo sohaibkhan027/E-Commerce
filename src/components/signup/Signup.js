@@ -1,7 +1,7 @@
 import React from 'react';
 import './StyleReg.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Button, message } from 'antd';
+import {  message } from 'antd';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,7 +20,7 @@ function Signup() {
     firstName: yup.string().required('First name is required').matches(/^[a-zA-Z]+$/, 'First name must contain only letters'),
     lastName: yup.string().required('Last name is required'),
     email: yup.string().email('Invalid email').required('Email is required'),
-    phone: yup.string(),
+    phone: yup.string().matches(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/, 'Phone number is not valid'),
     password: yup.string().required('Enter a password')
       .min(8, 'Password must be at least 8 characters')
       .max(32, 'Password must be at most 32 characters')
@@ -39,6 +39,7 @@ function Signup() {
       const alreadyUser = users.find(user => user.email === values.email);
       if (!alreadyUser) {
         dispatch(signUpForm(values));
+
         navigate('/login', { replace: true });
       } else {
         message.error('User already exists');
@@ -47,7 +48,7 @@ function Signup() {
       let errorMessages = error.inner.map(err => err.message).join('\n');
       message.error(errorMessages.trim());
     } finally {
-      actions.setSubmitting(false); // Ensure that the form is always set to not submitting
+      actions.setSubmitting(false);
     }
   };
 
@@ -56,7 +57,7 @@ function Signup() {
       <div className="wrapper wrapper--w680">
         <div className="card card-4">
           <div className="card-body">
-            <h2 className="title">Registration Form</h2>
+            <h2 className="title">Signup</h2>
             <Formik
               initialValues={initialValues}
               validationSchema={signupSchema}
@@ -113,7 +114,13 @@ function Signup() {
       >
         {isSubmitting ? 'Submitting...' : 'Submit'}
       </button>
+    <p className='p-button'>Already have an account? <span className='spanButton' onClick={()=>{
+        navigate("/login")
+      }}>LOGIN</span></p>
+      
                   </div>
+                  <a  className='btn btn-blue' href='https://www.facebook.com/'>Login with Facebook</a>
+                  <a className='btn btn-non' href='https://accounts.google.com/v3/signin/identifier?authuser=0&continue=https%3A%2F%2Fmyaccount.google.com%2F&ec=GAlAwAE&hl=en&service=accountsettings&flowName=GlifWebSignIn&flowEntry=AddSession&dsh=S637777808%3A1712143599500749&theme=mn&ddm=0'>Login with Google</a>
                 </Form>
               )}
             </Formik>

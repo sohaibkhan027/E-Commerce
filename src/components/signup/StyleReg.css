@@ -25,15 +25,13 @@
     border-radius: 10px;
     box-shadow: 0 8px 20px 0 rgba(0,0,0,1.1);
 }
-.card-4 .card-body {
-    padding: 57px 65px;
-    padding-bottom: 65px;
-}
+
 .title {
     font-size: 24px;
     color: #525252;
     font-weight: 400;
     margin-bottom: 40px;
+    text-align: center;
 }
 .row-space {
     display: flex;
@@ -83,10 +81,50 @@ input {
     color: white;
     padding: 8px;
     border-radius: 6px;
+    width: 100%;
+    margin-bottom: 10px;
 }
 .btn:hover{
     background-color: #3155a2;
     transition: 1s ease;
 }
+.error-message{
+    color: red;
+    font-size: 12px;
+}
+.spanButton{
+    color: #4272d7;
+    /* text-decoration: underline; */
+    font-size: 13px;
+    cursor: pointer;
 
+}
+.p-button{
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+.spanButton:hover{
+    color: #3155a2;
+}
+.btn-blue{
+    font-size: 14px;
+    background-color: #0866ff;
+    /* border: 1px solid grey; */
+    display: block;
+    text-align: center;
+}
+.btn-non{
+    font-size: 14px;
+    background-color: transparent;
+    color: black;
+    border: 1px solid grey;
+    display: block;
+    text-align: center;
 
+}
+.btn-non:hover{
+
+    background-color: black;
+    color: white;
+}

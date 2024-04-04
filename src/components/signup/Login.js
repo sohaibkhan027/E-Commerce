@@ -1,7 +1,7 @@
 import React from 'react';
 import './StyleReg.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Button, message } from 'antd';
+import {  message } from 'antd';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
@@ -85,6 +85,9 @@ function Login() {
                     <button className="btn" type="submit" disabled={isSubmitting}>
                       {isSubmitting ? 'Logging in...' : 'Login'}
                     </button>
+                    <p className='p-button'>Do have an account? <span className='spanButton' onClick={()=>{
+        navigate("/signup")
+      }}>SIGNUP</span></p>
                   </div>
                 </Form>
               )}

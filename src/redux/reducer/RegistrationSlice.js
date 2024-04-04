@@ -4,7 +4,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const regSlice = createSlice({
     name: 'user',
   initialState: {
-    userAccounts:[],
+    userAccounts:[{
+        firstName:"Admin",
+        email:"sohaib@gmail.com",
+        password:"as@12kha"
+    }],
     loggedUser:{},
     isAuthenticated: false,
   },
@@ -25,8 +29,8 @@ const regSlice = createSlice({
             const {email,upDateForm} =action.payload
             const loginForm = state.userAccounts.findIndex(user => user.email === email)
             if(loginForm !== -1){
-                state.userAccounts[loginForm]={...state.userAccounts[loginForm], ...upDateForm}
-                state.loggedUser = {...state.loggedUser, ... upDateForm}
+                state.userAccounts[loginForm]={...state.userAccounts[loginForm],...upDateForm}
+                state.loggedUser = {...state.loggedUser,...upDateForm}
             }
 
         },

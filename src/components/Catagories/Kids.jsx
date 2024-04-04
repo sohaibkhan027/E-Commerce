@@ -4,11 +4,15 @@ import data from "../Assets/all_product"
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import image3 from "../Assets/banner_kids.png"
+import { setSeletedProduct } from '../../redux/reducer/selectedProduct-slice';
+import { useDispatch } from 'react-redux';
+
 const { Meta } = Card;
 
-const Kids = ({ product, selectProduct }) => {
-    const kids = data.filter(product => product.category === "kid");
 
+const Kids = () => {
+  const dispatch = useDispatch()
+    const kids = data.filter(product => product.category === "kid");
 
     console.log("menprod",kids);
       return (
@@ -16,12 +20,12 @@ const Kids = ({ product, selectProduct }) => {
         
         
         <div className='heading-catog'>
-          <img src={image3} alt="men Image" />
+          <img src={image3} alt="men " />
       {/* <h1>Mens</h1> */}
     </div>
         <div className="product-cards-container">
         {kids.map(product => (
-          <Link key={product.id} to={`/product/${product.id}`} onClick={() => selectProduct(product.id)}>
+          <Link key={product.id} to={`/product/${product.id}`} onClick={() => dispatch(setSeletedProduct(product))}>
             <Card
               hoverable
               style={{ width: 241.1 }}

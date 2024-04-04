@@ -40,6 +40,7 @@ const Cart = () => {
 
   function orderPlace(){
     setTimeout(()=>{
+      dispatch(emptyCart())
       navigate("/")
     },2000)
   }

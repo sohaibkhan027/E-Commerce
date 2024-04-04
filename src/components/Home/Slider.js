@@ -8,7 +8,7 @@ import image3 from '../Assets/banner_women.png';
 
 const SliderCarousel = () => {
     const images = [image1, image2, image3];
-    const [currentSlide, setCurrentSlide] = useState(0);
+    const [, setCurrentSlide] = useState(0);
   
     const onChange = index => {
       setCurrentSlide(index);
