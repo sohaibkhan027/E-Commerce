@@ -1,0 +1,94 @@
+/* OrderTracking.css */
+
+.order-tracking {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.order-tracking h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.tracking-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.tracking-form input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.tracking-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.tracking-results {
+    /* Styles for tracking results */
+}
+
+
+/* Track.css */
+
+.track-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.track-form {
+    margin-bottom: 20px;
+}
+
+.track-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.track-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.track-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tracking-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.tracking-info h2 {
+    margin-bottom: 10px;
+}
+
+.tracking-info p {
+    margin-bottom: 5px;
+}

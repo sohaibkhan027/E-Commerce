@@ -6,6 +6,7 @@ import image2 from '../Assets/banner_kids.png';
 import image3 from '../Assets/banner_women.png';
 // import Products from '../services/ProductCards';
 import data from '../Assets/data'
+import { storeData } from "../../assets/data/dummyData";
 import newData from '../Assets/new_collections'
 // import mobData from '../../Assets-mob/mob-data'
 import { Link } from 'react-router-dom';
@@ -22,6 +23,7 @@ const Home = () => {
   // const selectProduct = (product) => {
   //   setSelectedProductId(product);
   // };
+  // const data = storeData
 
   return (
     <div className='body-home'>
@@ -41,7 +43,7 @@ const Home = () => {
             <Meta title={product.name}  description={  <div>
               <p>Price: ${product.old_price}</p>
               <p>Discounted Price: ${(product.price, product.new_price)}</p>
-              <p>Stock: {product.stock}</p>
+              <p>Stock: {product.s}</p>
               <strong>Brand: xox</strong>
             </div>} />
           </Card>

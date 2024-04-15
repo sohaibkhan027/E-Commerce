@@ -172,6 +172,9 @@ body{
 .ant-menu-title-content a{
   font-size: 12px;
 }
+.e-block{
+  display: none;
+}
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .navbar-brand {
@@ -213,6 +216,21 @@ body{
     position: absolute;
     right: 8px;
     top: 15px;
+  }
+  .d-block{
+    display: none;
+  }
+  .e-block{
+    display: block;
+    position: absolute;
+    right: 32px;
+    top: 5px;
+  }
+  .e-item{
+    position: absolute;
+    top: -15px;
+    right: -6px;
+    background-color: transparent;
   }
 
 }

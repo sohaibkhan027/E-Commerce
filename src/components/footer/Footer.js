@@ -1,10 +1,11 @@
 import React from 'react'
 import "./Footer.css"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMailBulk, faPhone } from '@fortawesome/free-solid-svg-icons'
 
 const Footer = () => {
+    const navigate = useNavigate()
     return (
         <>
         <div className='main-footer container'>
@@ -46,7 +47,9 @@ const Footer = () => {
                 <div className='cols-4 cols-3 siz'>
                     <h2 className='fonts'>About US</h2>
                     <ul className='footer-li'>
-                        <li><Link to="/contact">CONTACT</Link></li>
+                        <li onClick={()=>{
+                            navigate("/contact")
+                        }}>CONTACT</li>
                         <li><Link to="/faq">FAQ</Link></li>
                         <li><Link to="/policy">Pirvacy-Policy</Link></li>
                         <li>BLOG</li>

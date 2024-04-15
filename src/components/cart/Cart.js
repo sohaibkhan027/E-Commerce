@@ -7,10 +7,15 @@ import { Button, message } from 'antd';
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
 
   const cartItems = useSelector(state => state.cart.cartItem);
+
+  // Calculate total price
+  const totalPrice = cartItems.reduce((total, item) => {
+    return total + item.new_price * item.cartQuantity;
+  }, 0).toFixed(2);
 
   const handleIncreaseQuantity = (product) => {
     dispatch(increaseQuantity(product.id));
@@ -28,21 +33,20 @@ const Cart = () => {
         navigate("/");
       }
     }
-   
   };
 
   const handleEmptyCart = () => {
     if (window.confirm("Remove all items from your cart?")) {
       dispatch(emptyCart());
-      navigate("/")
+      navigate("/");
     }
-  }
+  };
 
-  function orderPlace(){
-    setTimeout(()=>{
+  function orderPlace() {
+    setTimeout(() => {
       dispatch(emptyCart())
       navigate("/")
-    },2000)
+    }, 2000)
   }
 
   return (
@@ -96,27 +100,29 @@ const Cart = () => {
                       </td>
                       <td className="text-right">${(product.new_price * product.cartQuantity).toFixed(2)}</td>
                     </tr>
-                  ))}
+                      ))}
                 </tbody>
               </table>
-              <Button onClick={()=>{
+              <Button onClick={() => {
                 navigate("/product")
               }}>Add Items</Button>
               {contextHolder}
+              <div className="total-price">
+                Total Price: ${totalPrice}
+              </div>
 
-            
               <div className='place-order'>
-          <Button onClick={()=>{
-            messageApi.open({
-              type: 'success',
-              content: 'Your order place successfully',
-            })
-            orderPlace()
-          }
-  }>Place Order</Button>
-          </div>
-          </div>
+                <Button onClick={() => {
+                  messageApi.open({
+                    type: 'success',
+                    content: 'Your order place successfully',
+                  })
+                  orderPlace()
+                }
+                }>Place Order</Button>
+              </div>
             </div>
+          </div>
         ) : (
           // Cart is empty message
           <div className="card">
@@ -136,7 +142,7 @@ const Cart = () => {
                   </tr>
                 </tbody>
               </table>
-              <Button onClick={()=>{
+              <Button onClick={() => {
                 navigate("/product")
               }}>Add Items</Button>
             </div>

@@ -47,20 +47,33 @@
   }
   
   .product-name {
-    font-size: 24px;
+    font-size: 20px !important;
     margin-bottom: 10px;
+    font-weight: 600;
   }
   
   .product-description {
     font-size: 16px;
     margin-bottom: 10px;
   }
-  
-  .product-price,
+  .quanty{
+    border: 1px solid black;
+    padding: 0 10px;
+    font-weight: 100;
+  }
+  hr{
+    padding: 10px;
+  }
+  .product-price {
+    font-size: 20px ;
+    font-weight: 600;
+    color: rgb(67, 67, 67);
+  }
   .product-quantity,
   .product-brand,
   .product-category {
     font-size: 16px;
+    font-weight: bold;
     margin-bottom: 5px;
   }
   
@@ -78,7 +91,10 @@
   .add-to-cart-btn:hover {
     background-color: #0056b3;
   }
-  
+  .product-stock{
+    display: flex;
+    justify-content: space-between;
+  }
   /* Media Queries for Responsive Design */
   
   @media (min-width: 768px) {

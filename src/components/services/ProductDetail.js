@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import data from '../Assets/all_product';
-import './Product.css'; // Import your CSS file for styling
+import './Product.css'; 
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/reducer/CartSlice';
 
@@ -28,9 +28,12 @@ const ProductDetail = () => {
             </div>
             <div className="product-info">
               <h2 className="product-name">{product.name}</h2>
-              <p className="product-description">{product.description}</p>
+              <div className='product-stock'>
               <p className="product-price">Price: ${product.new_price}</p>
-              <p className="product-quantity">Quantity: 1</p>
+              <p className="product-description"> Stock{product.description}</p>
+              </div>
+              <hr/>
+              <p className="product-quantity">Quantity: <span className='quanty'>1</span></p>
               <strong className="product-brand">Brand: xox</strong>
               <p className="product-category">Category: {product.category}</p>
               <button className="add-to-cart-btn" onClick={() => { handleAddToCart(product) }}>Add to Cart</button>
