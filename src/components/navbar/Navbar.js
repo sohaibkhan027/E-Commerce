@@ -6,18 +6,18 @@ import './Navbar.css';
 import Logo from "../Assets/logo.png";
 import Sidebar from './Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLogout } from '../../redux/reducer/RegistrationSlice';
+import { logout } from '../../redux/reducer/authSlice';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [navBar, setNavBar] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
+  const userName = useSelector(state => state.auth.userName);
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
-  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
   const itemsInCart = useSelector(state => state.cart.cartItem);
-
-  const user = useSelector(state => state.user.loggedUser);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -33,7 +33,7 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    dispatch(userLogout());
+    dispatch(logout());
   };
 
   return (
@@ -58,7 +58,7 @@ const Navbar = () => {
           <li className="nav-item"><Link to="/contact" className="nav-link" onClick={closeSidebar}>Contact</Link></li>
           {isAuthenticated ? (
             <>
-              <li className="nav-item"><p className="nav-link">{user.firstName}</p></li>
+              <li className="nav-item"><p className="nav-link">{userName}</p></li>
               <li className="nav-item"><button className="nav-link" onClick={handleLogout}>Logout</button></li>
             </>
           ) : (

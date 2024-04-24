@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './StyleReg.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {  message } from 'antd';
@@ -6,6 +6,8 @@ import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
 import { signInForm } from '../../redux/reducer/RegistrationSlice';
+import { loginSuccess,loginFailure } from '../../redux/reducer/authSlice';
+import axios from 'axios';
 
 function Login() {
   const initialValues = {
@@ -21,34 +23,39 @@ function Login() {
             .matches(/^(?=.*?[#?!@$%^&*-])/, 'Password must contain at least one special character'),
   });
 
-  const users= useSelector(state => state.user.userAccounts);
+  // const users = useSelector(state => state.user.userAccounts);
+  const tokens = useSelector(state => state.auth.token);
+
+  console.log("token",tokens);
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const handleSubmit = async (values, actions) => {
     try {
       await loginSchema.validate(values, { abortEarly: false });
-      console.log(values); 
-      const matchedUser = users.find(user => user.email === values.email && user.password === values.password);
-
-      if (matchedUser) {
-
-        // Dispatch login action
-        dispatch(signInForm(matchedUser)); 
-        message.success('Login successful');
-        navigate('/');
-
-      } else {
-        // If user is not found or credentials are invalid
-        message.error('Invalid email or password');
-      }
+      const res = await axios.post('http://localhost:8000/reg/login', values);
+      dispatch(loginSuccess({ token: res.data.token, user: res.data.user }));
+      message.success('Login successful');
+      navigate('/');
     } catch (error) {
-      let errorMessages = error.inner.map(err => err.message).join('\n');
-      message.error(errorMessages.trim());
+      if (error.response) {
+        const errorMessage = error.response.data.message || 'Email or Password in not Valid';
+        message.error(errorMessage);
+
+      } else if (error.request) {
+        message.error('No response received from server. Please try again later.');
+        
+      } else {
+        message.error('An error occurred. Please try again later.');
+      }
+      dispatch(loginFailure(error.message));
     } finally {
       actions.setSubmitting(false);
     }
   };
+  
+
+
 
   return (
     <div className="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
@@ -100,3 +107,24 @@ function Login() {
 }
 
 export default Login;
+
+
+     // console.log("token",token);
+      // if (token) {
+      //   dispatch(setToken(token)); // Dispatch action to set token in Redux store
+      //   localStorage.setItem("token", token);
+      //   navigate("/show");
+      // }
+      // const matchedUser = users.find(user => user.email === values.email && user.password === values.password);
+
+      // if (matchedUser) {
+
+      //   // Dispatch login action
+      //   dispatch(signInForm(matchedUser)); 
+      //   message.success('Login successful');
+      //   navigate('/');
+
+      // } else {
+      //   // If user is not found or credentials are invalid
+      //   message.error('Invalid email or password');
+      // }
