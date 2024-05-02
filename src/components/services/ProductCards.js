@@ -1,14 +1,24 @@
-import './Product.css'
-import data from '../Assets/all_product'
-import React from 'react'
+import './Product.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { message, Card, Input, Select } from 'antd';
+import data from '../Assets/all_product';
 import { Link } from 'react-router-dom';
-import { Card } from 'antd';
+
 const { Meta } = Card;
+const { Option } = Select;
 
+const ProductCards = ({ selectProduct }) => {
+  const [products, setProducts] = useState([]);
+  const [prod, setProd] = useState([]);
 
-const ProductCards = ({  selectProduct }) => {
-  // const category = data.category
-  // const filterData = category ? data.filter(product => product.category === category) : data;
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [filterName, setFilterName] = useState('');
+  const [filterCategory, setFilterCategory] = useState('');
+  const [filterPrice, setFilterPrice] = useState('');
+  const [filterDes, setFilterDes] = useState('');
 
   const groupedProducts = data.reduce((acc, product) => {
     if (!acc[product.category]) {
@@ -18,17 +28,94 @@ const ProductCards = ({  selectProduct }) => {
     return acc;
   }, {});
 
-  console.log(groupedProducts);
+  useEffect(()=>{
+    let filterData = prod.filter((prods)=>{
+      let tic = true
+      if(filterPrice && prods.price > parseInt(filterPrice)) {
+        tic = false;
+      }
+      setProd(filterData)
+    })
+
+  },[prod,filterPrice])
+
+
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get('http://localhost:8000/product/allproduct');
+      setProducts(response.data);
+      setError(null);
+    } catch (error) {
+      handleAxiosError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAxiosError = (error) => {
+    if (error.response) {
+      setError(`Server error: ${error.response.status}`);
+    } else if (error.request) {
+      setError('Network error');
+    } else {
+      setError('An error occurred');
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    // Filter products based on the filter criteria
+    let filtered = products.filter((product) => {
+      let match = true;
+      if (filterName && !product.name.toLowerCase().includes(filterName.toLowerCase())) {
+        match = false;
+      }
+      if (filterDes && !product.description.toLowerCase().includes(filterDes.toLowerCase())) {
+        match = false;
+      }
+      if (filterCategory && product.category !== filterCategory) {
+        match = false;
+      }
+      if (filterPrice && product.price > parseInt(filterPrice)) {
+        match = false;
+      }
+      return match;
+    });
+    setFilteredProducts(filtered);
+  }, [products, filterName, filterCategory, filterPrice,filterDes]);
 
   return (
     <>
-    <div className="product-cards-container">
-      {Object.keys(groupedProducts).map(category => (
+      <div className="filter-container">
+        <Input placeholder="Filter by name" value={filterName} onChange={(e) => setFilterName(e.target.value)} style={{ width: 200, marginRight: 10 }} />
+        <Select placeholder="Filter by category" value={filterCategory} onChange={(value) => setFilterCategory(value)} style={{ width: 200, marginRight: 10 }}>
+          <Option value="">All</Option>
+          {/* Assuming categories are available in your data */}
+          {/* {data.map((product) => (
+            <Option key={product.category} value={product.category}>{product.category}</Option>
+          ))} */}
+        </Select>
+        <Input placeholder="Filter by price" value={filterPrice} onChange={(e) => setFilterPrice(e.target.value)} style={{ width: 200 }} />
+        <Input placeholder="Filter by Des" value={filterDes} onChange={(e) => setFilterDes(e.target.value)} style={{ width: 200 }} />
+      </div>
+
+      <div className="product-cards-container">
+      {Object.keys(prod).map(category => (
         <div key={category} className="product-category">
           <div className='woman-head'>
       <h1>{category}</h1>
     </div>
           <div className="product-cards-container">
+          {(loading && !prod.length) ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div style={{ color: 'red' }}>{error}</div>
+        ) : (
+            <>
             {groupedProducts[category].map(product => (
               <Link key={product.id} to={`/product/${product.id}`} onClick={() => selectProduct(product.id)}>
                 <Card
@@ -51,14 +138,46 @@ const ProductCards = ({  selectProduct }) => {
                 </Card>
               </Link>
             ))}
+            </>
+            )}
           </div>
         </div>
-      ))}
+    ))}
     </div>
-
+      <div className="product-cards-container">
+        {(loading && !filteredProducts.length) ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div style={{ color: 'red' }}>{error}</div>
+        ) : (
+          <>
+            {filteredProducts.map(product => (
+              <Link key={product.id} to={`/product/${product.id}`} onClick={() => selectProduct(product.id)}>
+                <Card
+                  hoverable
+                  style={{ width: 241.1 }}
+                  cover={<img alt={product.description} src={product.image} />}
+                >
+                  <Meta
+                    title={product.name}
+                    description={
+                      <div>
+                        <p>Price: ${product.price}</p>
+                        <p>Discounted Price: ${(product.price, product.new_price)}</p>
+                        <p>Stock: {product.stock}</p>
+                        <p>Brand: xox</p>
+                        <p>Category: {product.category}</p>
+                      </div>
+                    }
+                  />
+                </Card>
+              </Link>
+            ))}
+          </>
+        )}
+      </div>
     </>
-    
   );
 };
 
-export default ProductCards
+export default ProductCards;

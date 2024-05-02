@@ -13,7 +13,7 @@ const { SubMenu } = Menu;
 
 const Sidebar = ({ isOpen, onClose }) => {
   return (
-    <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+    <div className={`sidebar ${isOpen ? 'opens' : ''}`}>
 
 
 <Menu

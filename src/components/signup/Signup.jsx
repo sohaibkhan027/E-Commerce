@@ -4,8 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { message } from 'antd';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { signUpForm } from '../../redux/reducer/RegistrationSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { signUpForm } from '../../redux/reducer/RegistrationSlice';
 import axios from 'axios';
 
 // interface FormValues {
@@ -37,41 +37,37 @@ function Signup() {
       .matches(/^(?=.*?[#?!@$%^&*-])/, 'Password must contain at least one special character'),
   });
 
-  const users = useSelector((state) => state.user.userAccounts);
+  // const users = useSelector((state) => state.user.userAccounts);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const submitForm = async (values, actions) => {
-    console.log('Submitting form...', values);
+    // console.log('Submitting form...', values);
     try {
       await signupSchema.validate(values, { abortEarly: false });
 
       // const alreadyUser = users.find((user) => user.email === values.email);
       // if (!alreadyUser) {
         const response = await axios.post('http://localhost:8000/reg/signup', values);
-        console.log("response api", response)
+        // console.log("response api", response)
     
         if (response.status === 201) {
-          // User created successfully
-          alert("User added", response.data.message);
-          console.log("User added", response.data.message);
+          message.success('User added successfully');
           navigate('/login', { replace: true });
         }
       } catch (error) {
-        if (error.response && error.response.status === 400 ) {
-          // Handle duplicate user error
-          // alert(error.response);
-          console.log(error.response.data.error);
-          setErr(error.response.data.error);
-        } else if(error.response.status === 500){
-          setErr("phone number already exsist")
-          console.log("ok",error.response.data.error)
-          // Handle other errors
-          console.error(error.response.data.error || 'Something went wrong.');
+        // console.log("err:", error.response);
+        if (error.response && error.response.status === 400) {
+                setErr(error.response.data.error);
+
+        } else if (error.response && error.response.status === 500) {
+            message.error('Internal Server Error. Please try again later.');
+        } else {
+            message.error('An unexpected error occurred. Please try again.');
         }
-      } finally {
+    } finally {
         actions.setSubmitting(false);
-      }
+    }
   };
 
   return (

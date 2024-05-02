@@ -14,10 +14,15 @@ const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
-  const userName = useSelector(state => state.auth.userName);
+  const userName = useSelector(state => state.auth.user.name);
+  // console.log("usernameee",userName);
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
   const itemsInCart = useSelector(state => state.cart.cartItem);
+
+  const userData = useSelector(state => state.auth.user)
+  const data = userData.role
+  console.log("userData",data);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -53,13 +58,27 @@ const Navbar = () => {
         </div>
         <ul className="navbar-nav" style={{ display: navBar ? 'flex' : '' }}>
           <li className="nav-item"><Link to="/" className="nav-link" onClick={closeSidebar}>Home</Link></li>
-          <li className="nav-item"><Link to="/about" className="nav-link" onClick={closeSidebar}>About</Link></li>
           <li className="nav-item"><Link to="/product" className="nav-link" onClick={closeSidebar}>Products</Link></li>
           <li className="nav-item"><Link to="/contact" className="nav-link" onClick={closeSidebar}>Contact</Link></li>
           {isAuthenticated ? (
             <>
-              <li className="nav-item"><p className="nav-link">{userName}</p></li>
-              <li className="nav-item"><button className="nav-link" onClick={handleLogout}>Logout</button></li>
+            {data === "admin" ?(
+              <>
+
+<li className="nav-item"><Link to="/addproduct" className="nav-link" onClick={closeSidebar}>Add Product</Link></li>
+<li className="nav-item back-name"><button className="nav-link dash"onClick={()=>{
+  navigate("/dashboard")
+}}>{userName}</button></li>
+{/* <li className="nav-item"><button className="nav-link" onClick={handleLogout}>Logout</button></li> */}
+</>
+            ):
+            (
+              <>
+<li className="nav-item back-name"><p className="nav-link">{userName}</p></li>
+<li className="nav-item"><button className="nav-link" onClick={handleLogout}>Logout</button></li>
+
+              </>
+            )}
             </>
           ) : (
             <>

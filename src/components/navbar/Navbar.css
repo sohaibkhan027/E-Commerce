@@ -64,6 +64,9 @@ body{
   text-decoration: none;
   color: black; /* Set text color */
 }
+.dash{
+  text-transform: uppercase;
+}
 .hambug svg{
   font-size: 22px;
 }
@@ -90,6 +93,15 @@ body{
   /* transition:  1s ease; */
 }
 
+.back-name{
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.back-name:hover{
+  color: black;
+}
 /* Media Query for Mobile Devices */
 
 
@@ -131,7 +143,7 @@ body{
   font-size: 14px;
 }
 
-.open {
+.opens {
   width: 250px;
 }
 .ant-menu{
@@ -162,7 +174,7 @@ body{
   font-size: 14px;
 }
 
-.open {
+.opens {
   width: 250px;
 }
 .ant-menu{

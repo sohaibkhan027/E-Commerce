@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
 import './StyleReg.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {  message } from 'antd';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
-import { signInForm } from '../../redux/reducer/RegistrationSlice';
+// import { signInForm } from '../../redux/reducer/RegistrationSlice';
 import { loginSuccess,loginFailure } from '../../redux/reducer/authSlice';
 import axios from 'axios';
 
@@ -18,15 +18,15 @@ function Login() {
   const loginSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Email is required'),
         password: yup.string().required('Password is required')
-            .min(8, 'Password must be at least 8 characters')
-            .max(32, 'Password must be at most 32 characters')
-            .matches(/^(?=.*?[#?!@$%^&*-])/, 'Password must contain at least one special character'),
+            // .min(8, 'Password must be at least 8 characters')
+            // .max(32, 'Password must be at most 32 characters')
+            // .matches(/^(?=.*?[#?!@$%^&*-])/, 'Password must contain at least one special character'),
   });
 
   // const users = useSelector(state => state.user.userAccounts);
-  const tokens = useSelector(state => state.auth.token);
+  const tokens = useSelector(state => state.auth.user);
 
-  console.log("token",tokens);
+  // console.log("token",tokens);
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -34,9 +34,21 @@ function Login() {
     try {
       await loginSchema.validate(values, { abortEarly: false });
       const res = await axios.post('http://localhost:8000/reg/login', values);
-      dispatch(loginSuccess({ token: res.data.token, user: res.data.user }));
-      message.success('Login successful');
-      navigate('/');
+      console.log("res", res);
+      const userData = res.data.user;
+      const resData = userData.role
+      console.log("resData",userData);
+      if(resData === "admin"){
+        dispatch(loginSuccess({ token: res.data.token, user:  userData }));
+        message.success('Login successful');
+        navigate('/dashboard');
+ }
+ else{
+  dispatch(loginSuccess({user: userData}))
+  message.success('Login successful');
+        navigate('/');
+
+ }
     } catch (error) {
       if (error.response) {
         const errorMessage = error.response.data.message || 'Email or Password in not Valid';

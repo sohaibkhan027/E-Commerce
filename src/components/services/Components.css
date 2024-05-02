@@ -1,0 +1,165 @@
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+    box-shadow: 0 8px 20px 0 rgba(0,0,0,1.1);
+
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  
+  .submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .error-message {
+    color: #dc3545;
+    font-size: 0.8em;
+    margin-top: 5px;
+  }
+  
+
+  /* Product List */
+
+  /* nav {
+    background-color: #000000;
+    padding: 18px;
+    margin-bottom: 20px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  li {
+    margin-right: 20px;
+  }
+  
+  a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #bc7777;
+  } */
+
+  
+  /* ProductList.css */
+
+/* ProductList.css */
+
+.table-container {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  thead {
+    background-color: #f8f9fa;
+    color: black;
+  }
+  
+  th, td {
+    padding: 12px;
+    border: 1px solid #dee2e6;
+  }
+  
+  th {
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f8f9fa;
+    color: black;
+  }
+  
+  /* tr:hover {
+    background-color: #e9ecef;
+    color: gray;
+  } */
+  
+  .image-cell img {
+    width: 80px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .edit-button,
+.delete-button {
+  padding: 8px 16px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  background-color: #0056b3;
+}
+
+.delete-button {
+  background-color: #dc3545;
+}
+
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+.save{
+    background-color: green;
+}
+
+.radios{
+    text-align: start;
+}
